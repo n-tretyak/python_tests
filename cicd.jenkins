@@ -1,12 +1,16 @@
 pipeline {
-   agent any
+   agent {
+    docker {
+      image 'python:3.7'
+      label 'docker && linux'
+    }
+  }
 
    stages {
       stage('Build') {
         steps {
           echo 'Building...'
           echo "Running ${env.BUILD_ID} ${env.BUILD_DISPLAY_NAME} on ${env.NODE_NAME} and JOB ${env.JOB_NAME}"
-          sh 'docker pull python:3.5.1'
         }
       }
       stage('List') {
@@ -17,6 +21,7 @@ pipeline {
 
       stage('runpy') {
         steps{      
+          sh 'python -V'
           sh '''cd ${WORKSPACE}
                 python tests_junit.py'''
         }
