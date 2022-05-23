@@ -1,5 +1,6 @@
-pipeline {agent { docker { image 'python:3.5.1' }}
-  }
+pipeline {
+
+   agent { docker { image 'python:3.5.1' }}
 
    stages {
    
@@ -42,4 +43,5 @@ pipeline {agent { docker { image 'python:3.5.1' }}
        echo 'Deploying...'
      }
    }
+  }
 }
