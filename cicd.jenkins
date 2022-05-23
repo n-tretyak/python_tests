@@ -16,7 +16,8 @@ pipeline {
 
       stage('runpy') {
         steps{      
-          sh 'python tests_junit.py'
+          sh '''cd ${WORKSPACE}
+                python tests_junit.py'''
         }
         }
    
